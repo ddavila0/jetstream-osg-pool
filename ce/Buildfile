@@ -5,7 +5,7 @@ FROM JS-API-Featured-CentOS7-May-20-2019
 
 yum install ntp
 
-RUN yum install https://repo.opensciencegrid.org/osg/3.4/osg-3.4-el7-release-latest.rpm
+RUN yum install https://repo.opensciencegrid.org/osg/3.5/osg-3.5-el7-release-latest.rpm
 RUN yum install epel-release yum-plugin-priorities
 RUN yum install osg-ca-certs cilogon-openid-ca-cert
 RUN yum install fetch-crl
@@ -17,6 +17,7 @@ systemctl enable fetch-crl-cron
 
 # get hostcert
 # one way is to get it from let's encrypt:
+# https://opensciencegrid.org/docs/security/host-certs/lets-encrypt/
 # ADD get_hostcert.sh /usr/sbin/get_hostcert.sh
 # RUN /usr/sbin/get_hostcert.sh
 
@@ -42,11 +43,10 @@ ADD pool_password /etc/condor/pool_password
 ADD grid-mapfile /etc/grid-security/grid-mapfile
 
 # We are assuming a specific IP and DNS name, update as needed
-RUN echo "js-129-114-19-48.jetstream-cloud.org" > /etc/hostname
+RUN echo "249cc.yeg.cybera.ca" > /etc/hostname
 
-RUN echo "10.1.1.13   osg-ce-collector osg-ce-collector.osg.jetstream-cloud.org" >> /etc/hosts
-RUN echo "10.1.1.14   osg-ce-squid osg-ce-squid.osg.jetstream-cloud.org" >> /etc/hosts
-RUN echo "10.1.1.4    js-129-114-19-48.jetstream-cloud.org js-129-114-19-48" >> /etc/hosts
+RUN echo "10.2.4.22 osg-ce-collector.osg.cybera-cloud.org osg-ce-collector" >> /etc/hosts
+RUN echo "10.2.4.40 249cc.yeg.cybera.ca 249cc" >> /etc/hosts
 
 /usr/sbin/osg-configure -c
 
