@@ -4,14 +4,14 @@ Installation instructions for the OSG CE Collector on Jetstream
 Follow the instructions in
 Buildfile
 
-Used on the TACC instnce:
-https://tacc.jetstream-cloud.org/
+Used on the Cybera openstack:
+https://cloud.cybera.ca/
 
 Deployed as a 
-m1.small
-instance.
+m1.medium instance.
 
-Using the default security policy, and our own osg_net.
+Needs to add security groups to open the follwoing ports:
+ssh:22(tcp), squid:3128(tcp), squid:3401(udp)
 
 
 Pool password file
