@@ -1,5 +1,5 @@
 [Unit]
-Description=Update domain to TACC
+Description=Update domain to Cybera
 
 After=network-online.target
 Wants=network-online.target

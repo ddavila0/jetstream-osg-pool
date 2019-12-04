@@ -22,15 +22,15 @@ ADD 50_condor_host.config /etc/condor/config.d/50_condor_host.config
 
 ADD 80_osg_users.config /etc/condor/config.d/80_osg_users.config
 
-# get the same one as at the collector
+# Needs to be the same across the pool
+# condor_store_cred -f <filename>
 ADD pool_password /etc/condor/pool_password
 
 # We are assuming a specific IP and DNS name, update as needed
-RUN echo "10.1.1.13   osg-ce-collector osg-ce-collector.osg.jetstream-cloud.org" >> /etc/hosts
-RUN echo "10.1.1.14   osg-ce-squid osg-ce-squid.osg.jetstream-cloud.org" >> /etc/hosts
+RUN echo "10.2.4.22 osg-ce-collector.osg.cybera-cloud.org osg-ce-collector"
 
 RUN echo "/cvmfs /etc/auto.cvmfs" > /etc/auto.master.d/cvmfs.autofs
-ADD cvmfs.d/default.local /etc/cvmfs/default.local
+ADD default.local /etc/cvmfs/default.local
 
 # Dynamically update my name, by adding the JetStream part
 ADD update_domain.sh /usr/sbin/update_domain.sh
