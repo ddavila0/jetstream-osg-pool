@@ -37,7 +37,8 @@ ADD osg.d/01-squid.ini /etc/osg/config.d/01-squid.ini
 ADD osg.d/30-gip.ini /etc/osg/config.d/30-gip.ini
 ADD osg.d/40-siteinfo.ini /etc/osg/config.d/40-siteinfo.ini
 
-# Use the same password as for the collector
+# Needs to be the same across the pool
+# condor_store_cred -f <filename>
 ADD pool_password /etc/condor/pool_password
 
 ADD grid-mapfile /etc/grid-security/grid-mapfile
@@ -47,6 +48,7 @@ RUN echo "249cc.yeg.cybera.ca" > /etc/hostname
 
 RUN echo "10.2.4.22 osg-ce-collector.osg.cybera-cloud.org osg-ce-collector" >> /etc/hosts
 RUN echo "10.2.4.40 249cc.yeg.cybera.ca 249cc" >> /etc/hosts
+RUN echo "199.116.235.130 249cc.yeg.cybera.ca 249cc" >> /etc/hosts
 
 /usr/sbin/osg-configure -c
 
