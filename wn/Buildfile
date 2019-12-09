@@ -34,6 +34,9 @@ ADD default.local /etc/cvmfs/default.local
 ADD update_domain.sh /usr/sbin/update_domain.sh
 ADD update_domain.service /usr/lib/systemd/system/update_domain.service
 
+RUN systemctl start fetch-crl-cron
+RUN systemctl enable fetch-crl-cron
+
 RUN systemctl enable autofs
 RUN systemctl start autofs
 
